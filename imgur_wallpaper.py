@@ -5,13 +5,6 @@ from requests import get
 extensions = ('.jpg', '.jpeg', '.png')
 
 
-def lovely_soup(u):
-    h = {'User-Agent': 'Chrome'}
-    r = get(u, headers=h)
-    c = r.text
-    return BeautifulSoup(c, 'lxml')
-
-
 def get_img(get_url):
     if get_url.endswith(extensions):
         img_name = 'images/{}'.format(get_url.split('/')[-1])
