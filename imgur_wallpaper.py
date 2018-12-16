@@ -1,13 +1,20 @@
 from bs4 import BeautifulSoup
 from requests import get
+import os
 
 
 extensions = ('.jpg', '.jpeg', '.png')
 
 
+def test_folder():
+    if not os.path.isdir('wallpapers'):
+        os.mkdir('wallpapers')
+
+
 def get_img(get_url):
+    test_folder()
     if get_url.endswith(extensions):
-        img_name = 'images/{}'.format(get_url.split('/')[-1])
+        img_name = 'wallpapers/{}'.format(get_url.split('/')[-1])
         img = get(get_url).content
         with open(img_name, 'wb') as f:
             f.write(img)
